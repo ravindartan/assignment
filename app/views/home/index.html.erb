@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+<div class="container">
+  <div class="row">
+    <% @posts.each do |x| %>
+      <% data = x.data %>
+      <div class="col-12 my-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><img width="30" height="30" class="rounded-circle" src="<%= data["user"]["profile_picture"] %>" ><span class="px-5"> <%= data["user"]["username"] %></span></h5>
+          </div>
+          <img class="card-img-bottom img-fluid" src="<%= data["images"]["standard_resolution"]["url"] %>" alt="Card image cap">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
